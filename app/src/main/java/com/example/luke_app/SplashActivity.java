@@ -4,16 +4,15 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.VideoView;
 
 import java.io.File;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /*
  * @Author: Luke
@@ -21,23 +20,23 @@ import androidx.appcompat.app.AppCompatActivity;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public class SplashActivity extends AppCompatActivity {
-    private FullScreenVideoView mVideoView;
-    private TextView tvCountTimer;
+@ViewInject(mainLayoutid = R.layout.activity_splash)
+public class SplashActivity extends BaseActivity {
+    @BindView(R.id.vv_play)
+    FullScreenVideoView mVideoView;
+    @BindView(R.id.tv_splash_timer)
+    TextView tvCountTimer;
     private CustomCountDownTimer timer;// 抽取成员变量快捷键 command+option+f
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        ButterKnife.bind(this);
 
-        //IOC的数据回调
-        mVideoView = findViewById(R.id.vv_play);
-        tvCountTimer = findViewById(R.id.tv_splash_timer);
         tvCountTimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SplashActivity.this,MainActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
             }
         });
 
@@ -79,9 +78,15 @@ public class SplashActivity extends AppCompatActivity {
         timer.cancel();
     }
 
-    //
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState, @NonNull PersistableBundle outPersistentState) {
-//        super.onSaveInstanceState(outState, outPersistentState);
-//    }
+    @OnClick(R.id.tv_splash_timer)
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_splash_timer:
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                break;
+            default:
+                break;
+        }
+    }
 }
+
