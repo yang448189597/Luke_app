@@ -51,6 +51,35 @@
 
         </RadioGroup>
 
+        <RadioGroup
+            android:visibility="gone"
+            android:id="@+id/rg_main_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_main_customer"
+                style="@style/main_tab_rb_style"
+                android:drawableTop="@drawable/selector_main_top_customer"
+                android:text="@string/str_main_shenzhen"></RadioButton>
+
+
+            <RadioButton
+                android:id="@+id/rb_main_mine"
+                style="@style/main_tab_rb_style"
+                android:drawableTop="@drawable/selector_main_top_mine"
+                android:text="@string/str_main_beijing">
+
+            </RadioButton>
+
+        </RadioGroup>
+
     </FrameLayout>
+
+
+
+
 
 </RelativeLayout>
