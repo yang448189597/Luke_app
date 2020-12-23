@@ -74,8 +74,7 @@ public class MainActivity extends BaseActivity {
         Animation animationShow = AnimationUtils.loadAnimation(this, R.anim.main_tab_translate_show);
         show.startAnimation(animationShow);
         show.setVisibility(View.VISIBLE);
-
-
     }
+
 
 }

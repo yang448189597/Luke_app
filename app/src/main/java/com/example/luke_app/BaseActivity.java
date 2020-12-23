@@ -3,6 +3,8 @@ package com.example.luke_app;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.luke_app.mvp.view.LifeCircleMvpActivity;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -13,7 +15,7 @@ import butterknife.ButterKnife;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends LifeCircleMvpActivity {
 
 
     @Override
