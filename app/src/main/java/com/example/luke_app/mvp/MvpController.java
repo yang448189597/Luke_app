@@ -17,7 +17,8 @@ import androidx.lifecycle.Lifecycle;
  */
 public class MvpController implements ILifeCircle {
 
-    //存放P层的实力
+    //存放P层的实例
+    // 静态代理
     private Set<ILifeCircle> lifeCircles = new HashSet<>();
 
     public void savePresenter(ILifeCircle lifeCircle){

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.luke_app.mvp.ISplashActivityContact;
+
 import java.io.File;
 
 import androidx.annotation.Nullable;
@@ -21,24 +23,30 @@ import butterknife.OnClick;
  * @Project: Luke_app
  */
 @ViewInject(mainLayoutid = R.layout.activity_splash)
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseActivity implements ISplashActivityContact.IView {
     @BindView(R.id.vv_play)
     FullScreenVideoView mVideoView;
     @BindView(R.id.tv_splash_timer)
     TextView tvCountTimer;
-    private CustomCountDownTimer timer;// 抽取成员变量快捷键 command+option+f
+    private ISplashActivityContact.IPresenter timerPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this);
 
-        tvCountTimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
-            }
-        });
+        initTimerPresenter();
+        initListener();
+        initVideo();
+    }
+
+
+    private void initTimerPresenter() {
+        timerPresenter = new SplashTimerPresenter(SplashActivity.this);
+        timerPresenter.initTimer();
+    }
+
+    private void initVideo() {
 
         mVideoView.setVideoURI(Uri.parse("android.resource://" + getPackageName() + File.separator + R.raw.splash));
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
@@ -54,28 +62,22 @@ public class SplashActivity extends BaseActivity {
                 mp.start();
             }
         });
+    }
 
+    public void setTvTimer(String s) {
+        tvCountTimer.setText(s);
+    }
 
-        timer = new CustomCountDownTimer(5, new ICountDownHandler() {
+    private void initListener() {
+
+        tvCountTimer.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTicker(int time) {
-                tvCountTimer.setText(time + "秒");
-            }
-
-            @Override
-            public void onFinish() {
-                tvCountTimer.setText("跳过");
+            public void onClick(View v) {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
             }
         });
 
-        timer.start();
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        timer.cancel();
     }
 
     @OnClick(R.id.tv_splash_timer)

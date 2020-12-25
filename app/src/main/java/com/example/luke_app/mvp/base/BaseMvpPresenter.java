@@ -12,7 +12,11 @@ import com.example.luke_app.mvp.presenter.LifeCircleMvpPresenter;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter {
+public abstract class BaseMvpPresenter<T extends IMvpView> extends LifeCircleMvpPresenter<T> {
+
+    public BaseMvpPresenter(T view){
+        super(view);
+    }
 
     @Override
     public void onCreate(Bundle saveInstanceState, Intent intent, Bundle getArguments) {
