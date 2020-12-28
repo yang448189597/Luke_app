@@ -1,4 +1,8 @@
-package com.example.luke_app.mvp;
+package com.example.luke_app.splash;
+
+import com.example.luke_app.mvp.ILifeCircle;
+import com.example.luke_app.mvp.IMvpView;
+import com.example.luke_app.mvp.MvpController;
 
 /*
  * @Author: Luke

@@ -1,19 +1,19 @@
-package com.example.luke_app;
+package com.example.luke_app.splash;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.luke_app.mvp.ISplashActivityContact;
+import com.example.luke_app.base.BaseActivity;
+import com.example.luke_app.main.MainActivity;
+import com.example.luke_app.R;
+import com.example.luke_app.base.ViewInject;
 
 import java.io.File;
 
-import androidx.annotation.Nullable;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /*
@@ -31,9 +31,7 @@ public class SplashActivity extends BaseActivity implements ISplashActivityConta
     private ISplashActivityContact.IPresenter timerPresenter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+    public void afterBindView() {
 
         initTimerPresenter();
         initListener();

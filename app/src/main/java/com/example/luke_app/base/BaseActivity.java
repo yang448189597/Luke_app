@@ -1,12 +1,10 @@
-package com.example.luke_app;
+package com.example.luke_app.base;
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.luke_app.mvp.view.LifeCircleMvpActivity;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
 /*
@@ -15,7 +13,7 @@ import butterknife.ButterKnife;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public class BaseActivity extends LifeCircleMvpActivity {
+public abstract class BaseActivity extends LifeCircleMvpActivity {
 
 
     @Override
@@ -26,12 +24,23 @@ public class BaseActivity extends LifeCircleMvpActivity {
             int mainLayoutid = annotation.mainLayoutid();
             if (mainLayoutid > 0) {
                 setContentView(mainLayoutid);
-                ButterKnife.bind(this);
+                bindView();
+                afterBindView();
             } else {
                 throw new RuntimeException("mainLayoutid < 0");
             }
         } else {
             throw new RuntimeException("annotation == null");
         }
+    }
+
+
+    // 模板方法 设计模式 父类定义规则 具体的实现交给子类
+    public abstract void afterBindView();
+
+    // View的依赖注入绑定
+    private void bindView() {
+
+        ButterKnife.bind(this);
     }
 }

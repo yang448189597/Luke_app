@@ -3,9 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.luke_app.FullScreenVideoView
+    <com.example.luke_app.splash.FullScreenVideoView
         android:id="@+id/vv_play"
-        style="@style/video_view_style"></com.example.luke_app.FullScreenVideoView>
+        style="@style/video_view_style"></com.example.luke_app.splash.FullScreenVideoView>
 
     <TextView
         android:id="@+id/tv_splash_timer"

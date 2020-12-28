@@ -1,4 +1,4 @@
-package com.example.luke_app;
+package com.example.luke_app.splash;
 
 import android.content.Context;
 import android.util.AttributeSet;

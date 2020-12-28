@@ -1,6 +1,5 @@
-package com.example.luke_app;
+package com.example.luke_app.main;
 
-import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -8,16 +7,21 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.luke_app.R;
+import com.example.luke_app.base.BaseActivity;
+import com.example.luke_app.base.ViewInject;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 @ViewInject(mainLayoutid = R.layout.activity_main)
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IMainActivityContact.IView{
 
     private boolean isChangTopOrBottom;
+    IMainActivityContact.IPresenter mPresenter = new MainActivityPresenter(this);
+
 
     @BindView(R.id.fac_main_home)
     FloatingActionButton facMainHome;
@@ -29,22 +33,22 @@ public class MainActivity extends BaseActivity {
     RadioGroup rgMainTop;
     @BindView(R.id.fl_main_bottom)
     FrameLayout flMainBottom;
-    @BindView(R.id.rb_main_customer)
+    @BindView(R.id.rb_main_shenzhen)
     RadioButton rbMainCustomer;
-    @BindView(R.id.rb_main_mine)
+    @BindView(R.id.rb_main_beijing)
     RadioButton rbMainMine;
     @BindView(R.id.rg_main_bottom)
     RadioGroup rgMainBottom;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+    public void afterBindView() {
+        initHomeFragment();
         changeAnima(rgMainBottom, rgMainTop);
-        initView();
     }
 
-    private void initView() {
+    // 初始化fragment
+    private void initHomeFragment() {
+        mPresenter.initHomeFragment();
 
     }
 
@@ -77,4 +81,18 @@ public class MainActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void showFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().show(mFragment).commit();
+    }
+
+    @Override
+    public void addFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().add(R.id.fl_main_content,mFragment).commit();
+    }
+
+    @Override
+    public void hideFragment(Fragment mFragment) {
+        getSupportFragmentManager().beginTransaction().hide(mFragment).commit();
+    }
 }

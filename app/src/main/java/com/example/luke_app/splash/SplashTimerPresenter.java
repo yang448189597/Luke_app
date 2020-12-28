@@ -1,8 +1,7 @@
-package com.example.luke_app;
+package com.example.luke_app.splash;
 
 import android.util.Log;
 
-import com.example.luke_app.mvp.ISplashActivityContact;
 import com.example.luke_app.mvp.base.BaseMvpPresenter;
 
 /*

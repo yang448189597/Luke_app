@@ -1,4 +1,4 @@
-package com.example.luke_app;
+package com.example.luke_app.splash;
 
 import android.os.Handler;
 

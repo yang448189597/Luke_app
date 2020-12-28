@@ -1,4 +1,4 @@
-package com.example.luke_app;
+package com.example.luke_app.base;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
