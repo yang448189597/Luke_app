@@ -24,6 +24,16 @@ public interface IMainActivityContact {
 
     interface IPresenter extends ILifeCircle {
         void initHomeFragment();
+
+        int getCurrentCheckedId();
+
+        void replaceFragment(int mCurrentFragmentIndex);
+
+        int getCurrentCheckedIndex();
+
+        int getTopPosition();
+
+        int getBottomPosition();
     }
 
     IView emptyView = new IView() {

@@ -1,10 +1,10 @@
 package com.example.luke_app.main;
 
 import com.example.luke_app.R;
-import com.example.luke_app.main.shanghai.BeiJingFragment;
-import com.example.luke_app.main.shanghai.HangZhouFragment;
+import com.example.luke_app.main.beijing.BeiJingFragment;
+import com.example.luke_app.main.hangzhou.HangZhouFragment;
 import com.example.luke_app.main.shanghai.ShangHaiFragment;
-import com.example.luke_app.main.shanghai.ShenZhenFragment;
+import com.example.luke_app.main.shenzhen.ShenZhenFragment;
 import com.example.luke_app.mvp.base.BaseMvpPresenter;
 
 import androidx.fragment.app.Fragment;
@@ -22,6 +22,10 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContact
     private Fragment[] mFragments = new Fragment[4];
     private int mCurrentId;
 
+    private int mCurrentCheckedId;
+    private int mTopPosition;
+    private int mBottomPosition;
+
 
     public MainActivityPresenter(IMainActivityContact.IView view) {
         super(view);
@@ -38,8 +42,29 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContact
         replaceFragment(mCurrentFragmentIndex);
     }
 
+
+    @Override
+    public int getCurrentCheckedId() {
+        return mCurrentCheckedId;
+    }
+
+    @Override
+    public int getCurrentCheckedIndex() {
+        return mCurrentFragmentIndex;
+    }
+
+    @Override
+    public int getTopPosition() {
+        return mTopPosition;
+    }
+
+    @Override
+    public int getBottomPosition() {
+        return mBottomPosition;
+    }
+
     // 切换fragment 方法
-    private void replaceFragment(int mCurrentFragmentIndex) {
+    public void replaceFragment(int mCurrentFragmentIndex) {
         for (int i = 0; i < mFragments.length; i++) {
             if (mCurrentFragmentIndex != i) {
                 if (mFragments[i] != null) {
@@ -48,14 +73,14 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContact
             }
         }
         Fragment mFragment = mFragments[mCurrentFragmentIndex];
-        if(mFragment != null){
+        if (mFragment != null) {
             addAndShowFragment(mFragment);
-        }else {
+        } else {
             newCurrentFragment(mCurrentFragmentIndex);
         }
         setCurChecked(mCurrentFragmentIndex);
-
     }
+
 
     // 记录当前角标
     private void setCurChecked(int mCurrentFragmentIndex) {
@@ -63,15 +88,19 @@ public class MainActivityPresenter extends BaseMvpPresenter<IMainActivityContact
         switch (mCurrentFragmentIndex) {
             case 0:
                 mCurrentId = R.id.rb_main_shanghai;
+                mTopPosition = 0;
                 break;
             case 1:
                 mCurrentId = R.id.rb_main_hangzhou;
+                mTopPosition = 1;
                 break;
             case 2:
                 mCurrentId = R.id.rb_main_shenzhen;
+                mBottomPosition = 2;
                 break;
             case 3:
                 mCurrentId = R.id.rb_main_beijing;
+                mBottomPosition = 3;
                 break;
         }
     }
