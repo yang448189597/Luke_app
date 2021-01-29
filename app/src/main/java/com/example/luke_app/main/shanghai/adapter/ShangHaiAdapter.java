@@ -28,10 +28,14 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
 
     private final ArrayList<ShanghaiBean> mData;
     private final Context mContext;
+    private final boolean mIsHor;
+    private final RecyclerView.RecycledViewPool recycledViewPool;
 
-    public ShangHaiAdapter(Context context,ArrayList<ShanghaiBean> data){
+    public ShangHaiAdapter(Context context,ArrayList<ShanghaiBean> data,boolean isHor){
+        recycledViewPool = new RecyclerView.RecycledViewPool();
         mContext = context;
         mData = data;
+        mIsHor = isHor;
     }
 
     // 适配器设计模式
@@ -41,7 +45,10 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 根据不同的类型 绑定不同的viewHolder
         if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL){
-            Log.e("onCreateViewHolder","vertical");
+            if(mIsHor){
+                Log.e("onCreateViewHolder","vertical");
+            }
+
             View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment,parent,false);
             ShangHaiViewHolder viewHolder = new ShangHaiViewHolder(inflate);
             return viewHolder;
@@ -69,8 +76,8 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
 
         }
         else if(holder instanceof ShangHaiViewHolderRv){
-            ((ShangHaiViewHolderRv)holder).mRv.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
-            ((ShangHaiViewHolderRv)holder).mRv.setAdapter(new ShangHaiAdapter(mContext,shanghaiBean.getData()));
+
+            ((ShangHaiViewHolderRv)holder).mRv.setAdapter(new ShangHaiAdapter(mContext,shanghaiBean.getData(),true));
         }
 
     }
@@ -110,12 +117,18 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     // 缓存view
     public class ShangHaiViewHolderRv extends RecyclerView.ViewHolder{
 
+//        private final LinearLayoutManager linearLayoutManager;
+//            recycledViewPool 可以实现recycleview 中多个item的复用
         private RecyclerView mRv;
 
         public ShangHaiViewHolderRv(@NonNull View itemView) {
             super(itemView);
             mRv = itemView.findViewById(R.id.item_shanghai_rv);
-//            ((ShangHaiViewHolderRv)holder).mRv.setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false);
+            linearLayoutManager.setRecycleChildrenOnDetach(true);
+            mRv.setLayoutManager(linearLayoutManager);
+            mRv.setRecycledViewPool(recycledViewPool);
+
         }
     }
 }
