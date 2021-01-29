@@ -7,6 +7,8 @@ import com.example.luke_app.R;
 import com.example.luke_app.base.BaseFragment;
 import com.example.luke_app.base.ViewInject;
 import com.example.luke_app.main.shanghai.adapter.ShangHaiAdapter;
+import com.example.luke_app.main.shanghai.dto.ShangHaiBeanManager;
+import com.example.luke_app.main.shanghai.dto.ShanghaiBean;
 import com.example.luke_app.mvp.view.LifeCircleMvpFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -43,12 +45,8 @@ public class ShangHaiFragment extends BaseFragment {
 
     private void initRecyclerView() {
         shanghaiRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
-        ArrayList<String> data = new ArrayList<>();
-        for (int i = 0; i <15 ; i++) {
-            data.add("上海是一个好地方啊！！");
-            
-        }
-        shanghaiRecyclerview.setAdapter(new ShangHaiAdapter(data));
+
+        shanghaiRecyclerview.setAdapter(new ShangHaiAdapter(mContext, ShangHaiBeanManager.getData()));
     }
 
 
