@@ -46,7 +46,7 @@ public class ShangHaiFragment extends BaseFragment {
     private void initRecyclerView() {
         shanghaiRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
 
-        shanghaiRecyclerview.setAdapter(new ShangHaiAdapter(mContext, ShangHaiBeanManager.getData(),false));
+        shanghaiRecyclerview.setAdapter(new ShangHaiAdapter(getActivity(), ShangHaiBeanManager.getData(),false));
     }
 
 

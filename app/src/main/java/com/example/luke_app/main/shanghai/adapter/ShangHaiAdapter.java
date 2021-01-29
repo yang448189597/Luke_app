@@ -1,5 +1,6 @@
 package com.example.luke_app.main.shanghai.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.luke_app.R;
 import com.example.luke_app.main.shanghai.dto.ShanghaiBean;
+import com.example.luke_app.main.shanghai.view.ShanghaiDetailActivity;
 
 import java.util.ArrayList;
 
@@ -27,11 +29,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ShangHaiAdapter extends RecyclerView.Adapter {
 
     private final ArrayList<ShanghaiBean> mData;
-    private final Context mContext;
+    private final Activity mContext;
     private final boolean mIsHor;
     private final RecyclerView.RecycledViewPool recycledViewPool;
 
-    public ShangHaiAdapter(Context context,ArrayList<ShanghaiBean> data,boolean isHor){
+    public ShangHaiAdapter(Activity context, ArrayList<ShanghaiBean> data, boolean isHor) {
         recycledViewPool = new RecyclerView.RecycledViewPool();
         mContext = context;
         mData = data;
@@ -44,17 +46,16 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // 根据不同的类型 绑定不同的viewHolder
-        if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL){
-            if(mIsHor){
-                Log.e("onCreateViewHolder","vertical");
+        if (viewType == ShanghaiBean.IShanghaiItemType.VERTICAL) {
+            if (mIsHor) {
+                Log.e("onCreateViewHolder", "vertical");
             }
 
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment,parent,false);
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment, parent, false);
             ShangHaiViewHolder viewHolder = new ShangHaiViewHolder(inflate);
             return viewHolder;
-        }
-        else if(viewType == ShanghaiBean.IShanghaiItemType.HORIZANTAL){
-            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_rv,null);
+        } else if (viewType == ShanghaiBean.IShanghaiItemType.HORIZANTAL) {
+            View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_shanghai_fragment_rv, null);
             ShangHaiViewHolderRv viewHolder = new ShangHaiViewHolderRv(inflate);
             return viewHolder;
         }
@@ -67,17 +68,16 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ShanghaiBean shanghaiBean = mData.get(position);
-        if(holder instanceof ShangHaiViewHolder){
-            Log.e("onBindViewHolder","vertical"+"position= "+position);
-            ((ShangHaiViewHolder)holder).mTV.setText(shanghaiBean.getmDec());
-            ((ShangHaiViewHolder)holder).mIv.setVisibility(shanghaiBean.isShowImg()?View.VISIBLE:View.GONE);
+        if (holder instanceof ShangHaiViewHolder) {
+            Log.e("onBindViewHolder", "vertical" + "position= " + position);
+            ((ShangHaiViewHolder) holder).mTV.setText(shanghaiBean.getmDec());
+            ((ShangHaiViewHolder) holder).mIv.setVisibility(shanghaiBean.isShowImg() ? View.VISIBLE : View.GONE);
             // view 可以设置tag
-            ((ShangHaiViewHolder)holder).itemView.setTag(position);
+            ((ShangHaiViewHolder) holder).itemView.setTag(position);
 
-        }
-        else if(holder instanceof ShangHaiViewHolderRv){
+        } else if (holder instanceof ShangHaiViewHolderRv) {
 
-            ((ShangHaiViewHolderRv)holder).mRv.setAdapter(new ShangHaiAdapter(mContext,shanghaiBean.getData(),true));
+            ((ShangHaiViewHolderRv) holder).mRv.setAdapter(new ShangHaiAdapter(mContext, shanghaiBean.getData(), true));
         }
 
     }
@@ -94,7 +94,7 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
     }
 
     // 缓存view
-    public class ShangHaiViewHolder extends RecyclerView.ViewHolder{
+    public class ShangHaiViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTV;
         private ImageView mIv;
@@ -108,16 +108,17 @@ public class ShangHaiAdapter extends RecyclerView.Adapter {
                 @Override
                 public void onClick(View v) {
                     int position = (int) v.getTag();
-                    Toast.makeText(mContext,"我被点击了,点击的position= "+position,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "我被点击了,点击的position= " + position, Toast.LENGTH_SHORT).show();
+                    ShanghaiDetailActivity.star_5_0(mContext, mIv);
                 }
             });
         }
     }
 
     // 缓存view
-    public class ShangHaiViewHolderRv extends RecyclerView.ViewHolder{
+    public class ShangHaiViewHolderRv extends RecyclerView.ViewHolder {
 
-//        private final LinearLayoutManager linearLayoutManager;
+        //        private final LinearLayoutManager linearLayoutManager;
 //            recycledViewPool 可以实现recycleview 中多个item的复用
         private RecyclerView mRv;
 
