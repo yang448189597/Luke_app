@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import com.example.luke_app.R;
 import com.example.luke_app.base.BaseActivity;
 import com.example.luke_app.base.ViewInject;
+import com.example.luke_app.main.shanghai.module.ShangHaiDetailHttpTask;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -77,31 +78,32 @@ public class ShanghaiDetailActivity extends BaseActivity {
      * 发送网络请求 OkHttp
      */
     private void initGetNetData() {
-        OkHttpClient client = new OkHttpClient();
-        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
-        builder.addQueryParameter("sort","desc");
-        builder.addQueryParameter("page","1");
-        builder.addQueryParameter("pagesize","2");
-        builder.addQueryParameter("time",""+System.currentTimeMillis()/1000);
-        builder.addQueryParameter("key","9e79594d7a4f33acf8ad1a206566d965");
-        // 建造者的设计模式
-        Request request = new Request.Builder().url(builder.build()).get().build();
-        Call call = client.newCall(request);
-        // 同步请求
-//        Response execute = call.execute();
-
-        // 异步 两个回调 一个失败的 一个成功
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.e("initGetNetData","onFailure"+e);
-            }
-
-            @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                Log.e("initGetNetData","onResponse"+response.body().string());
-            }
-        });
+        Object desc = new ShangHaiDetailHttpTask().getXiaoHuaList("desc","1","2");
+//        OkHttpClient client = new OkHttpClient();
+//        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
+//        builder.addQueryParameter("sort","desc");
+//        builder.addQueryParameter("page","1");
+//        builder.addQueryParameter("pagesize","2");
+//        builder.addQueryParameter("time",""+System.currentTimeMillis()/1000);
+//        builder.addQueryParameter("key","9e79594d7a4f33acf8ad1a206566d965");
+//        // 建造者的设计模式
+//        Request request = new Request.Builder().url(builder.build()).get().build();
+//        Call call = client.newCall(request);
+//        // 同步请求
+////        Response execute = call.execute();
+//
+//        // 异步 两个回调 一个失败的 一个成功
+//        call.enqueue(new Callback() {
+//            @Override
+//            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+//                Log.e("initGetNetData","onFailure"+e);
+//            }
+//
+//            @Override
+//            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+//                Log.e("initGetNetData","onResponse"+response.body().string());
+//            }
+//        });
     }
 
     private void initAnima() {
