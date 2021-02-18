@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.luke_app.mvp.view.LifeCircleMvpActivity;
-import com.example.luke_app.mvp.view.LifeCircleMvpFragment;
+
+import com.example.mvp.mvp.view.LifeCircleMvpFragment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

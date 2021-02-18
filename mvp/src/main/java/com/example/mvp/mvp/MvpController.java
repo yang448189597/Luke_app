@@ -1,4 +1,4 @@
-package com.example.luke_app.mvp;
+package com.example.mvp.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,8 +6,6 @@ import android.os.Bundle;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
-
-import androidx.lifecycle.Lifecycle;
 
 /*
  * @Author: Luke

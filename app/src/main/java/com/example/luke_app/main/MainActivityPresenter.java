@@ -5,7 +5,7 @@ import com.example.luke_app.main.beijing.BeiJingFragment;
 import com.example.luke_app.main.hangzhou.HangZhouFragment;
 import com.example.luke_app.main.shanghai.ShangHaiFragment;
 import com.example.luke_app.main.shenzhen.ShenZhenFragment;
-import com.example.luke_app.mvp.base.BaseMvpPresenter;
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 
 import androidx.fragment.app.Fragment;
 

@@ -1,4 +1,4 @@
-package com.example.luke_app.mvp;
+package com.example.mvp.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;

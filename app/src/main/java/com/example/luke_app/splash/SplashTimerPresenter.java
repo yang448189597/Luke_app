@@ -2,7 +2,7 @@ package com.example.luke_app.splash;
 
 import android.util.Log;
 
-import com.example.luke_app.mvp.base.BaseMvpPresenter;
+import com.example.mvp.mvp.base.BaseMvpPresenter;
 
 /*
  * @Author: Luke

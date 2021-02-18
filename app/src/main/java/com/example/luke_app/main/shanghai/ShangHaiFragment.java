@@ -8,12 +8,9 @@ import com.example.luke_app.base.BaseFragment;
 import com.example.luke_app.base.ViewInject;
 import com.example.luke_app.main.shanghai.adapter.ShangHaiAdapter;
 import com.example.luke_app.main.shanghai.dto.ShangHaiBeanManager;
-import com.example.luke_app.main.shanghai.dto.ShanghaiBean;
-import com.example.luke_app.mvp.view.LifeCircleMvpFragment;
+import com.example.mvp.mvp.view.LifeCircleMvpFragment;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-
-import java.util.ArrayList;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;

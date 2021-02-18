@@ -1,8 +1,8 @@
-package com.example.luke_app.mvp.presenter;
+package com.example.mvp.mvp.presenter;
 
-import com.example.luke_app.mvp.ILifeCircle;
-import com.example.luke_app.mvp.IMvpView;
-import com.example.luke_app.mvp.MvpController;
+import com.example.mvp.mvp.ILifeCircle;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.MvpController;
 
 import java.lang.ref.WeakReference;
 

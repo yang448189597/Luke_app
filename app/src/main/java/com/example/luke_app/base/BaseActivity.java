@@ -2,7 +2,7 @@ package com.example.luke_app.base;
 
 import android.os.Bundle;
 
-import com.example.luke_app.mvp.view.LifeCircleMvpActivity;
+import com.example.mvp.mvp.view.LifeCircleMvpActivity;
 
 import androidx.annotation.Nullable;
 import butterknife.ButterKnife;

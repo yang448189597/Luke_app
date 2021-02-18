@@ -1,2 +1,4 @@
+include ':http'
+include ':mvp'
 include ':app'
 rootProject.name = "Luke_app"

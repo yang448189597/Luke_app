@@ -1,11 +1,10 @@
-package com.example.luke_app.mvp.view;
+package com.example.mvp.mvp.view;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
-import com.example.luke_app.mvp.IMvpView;
-import com.example.luke_app.mvp.MvpController;
+import com.example.mvp.mvp.IMvpView;
+import com.example.mvp.mvp.MvpController;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
