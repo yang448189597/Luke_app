@@ -1,6 +1,6 @@
 package com.example.luke_app.base;
 
-import com.example.http.IRequest;
+import com.example.http.request.host.IRequest;
 import com.example.http.annotation.RequestMethod;
 import com.example.http.request.LfRequest;
 
@@ -14,6 +14,7 @@ public class JHRequest extends LfRequest {
     public static IRequest sendHttp(String path, @RequestMethod int requestMethod){
         JHRequest request = new JHRequest();
         request.host = HostManager.jhHost;
+        request.path = path;
         request.requestMethod = requestMethod;
         return request;
     }

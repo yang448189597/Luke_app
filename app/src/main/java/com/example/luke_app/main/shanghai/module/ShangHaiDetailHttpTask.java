@@ -1,6 +1,6 @@
 package com.example.luke_app.main.shanghai.module;
 
-import com.example.http.LfhttpTask;
+import com.example.http.LfHttpServer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,16 +11,16 @@ import java.util.Map;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public class ShangHaiDetailHttpTask extends LfhttpTask {
+public class ShangHaiDetailHttpTask extends LfHttpServer {
 
-    public Object getXiaoHuaList(String sort,String page,String pagesize){
-        Map<String,Object> params = new HashMap<>();
-        params.put("sort",sort);
-        params.put("page",page);
-        params.put("pagesize",pagesize);
-        params.put("time",""+System.currentTimeMillis()/1000);
-        params.put("key","9e79594d7a4f33acf8ad1a206566d965");
-        return super.execute(ShangHaiDetailRequest.xiaoHuaRequest,params );
+    public Object getXiaoHuaList(String sort, String page, String pagesize) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("sort", sort);
+        params.put("page", page);
+        params.put("pagesize", pagesize);
+        params.put("time", "" + System.currentTimeMillis() / 1000);
+        params.put("key", "9e79594d7a4f33acf8ad1a206566d965");
+        return super.execute(ShangHaiDetailRequest.xiaoHuaRequest, params);
     }
 
 

@@ -1,6 +1,6 @@
 package com.example.luke_app.main.shanghai.module;
 
-import com.example.http.IRequest;
+import com.example.http.request.host.IRequest;
 import com.example.http.annotation.RequestMethod;
 import com.example.luke_app.base.JHRequest;
 

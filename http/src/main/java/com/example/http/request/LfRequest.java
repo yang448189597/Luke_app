@@ -1,8 +1,10 @@
 package com.example.http.request;
 
-import com.example.http.IRequest;
+import com.example.http.request.host.IRequest;
 import com.example.http.annotation.RequestMethod;
 import com.example.http.request.host.IHost;
+
+import java.util.Map;
 
 /*
  * @Author: Luke
@@ -12,7 +14,36 @@ import com.example.http.request.host.IHost;
  */
 public class LfRequest implements IRequest {
     protected IHost host;
+    protected String path;
+
+    protected Map<String, Object> params;
 
     @RequestMethod
     protected int requestMethod;
+
+    @Override
+    public void setParams(Map<String, Object> params) {
+        this.params = params;
+
+    }
+
+    @Override
+    public Map<String, Object> getParams() {
+        return params;
+    }
+
+    @Override
+    public int getRequestMethod() {
+        return requestMethod;
+    }
+
+    @Override
+    public IHost getHost() {
+        return host;
+    }
+
+    @Override
+    public String getPath() {
+        return path;
+    }
 }

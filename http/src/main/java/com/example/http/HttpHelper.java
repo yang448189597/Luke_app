@@ -1,5 +1,9 @@
 package com.example.http;
 
+import com.example.http.okhttp.OkHttpScheduler;
+import com.example.http.request.call.ICall;
+import com.example.http.request.host.IRequest;
+
 import java.util.Map;
 
 /*
@@ -9,8 +13,24 @@ import java.util.Map;
  * @Project: Luke_app
  */
 public class HttpHelper {
+    private volatile static HttpScheduler httpScheduler;
+
+    public static HttpScheduler getHttpScheduler(){
+        if(httpScheduler == null){
+            synchronized (HttpHelper.class){
+                if(httpScheduler == null){
+                    httpScheduler = new OkHttpScheduler();
+                }
+            }
+        }
+        return httpScheduler;
+    }
+
 
     protected static Object execute(IRequest request, Map<String,Object> params) {
+        request.setParams(params);
+        ICall call = getHttpScheduler().newCall(request);
+        Object object = getHttpScheduler().execute(call);
         return null;
     }
 }

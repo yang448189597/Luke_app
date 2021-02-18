@@ -1,3 +1,4 @@
+include ':task'
 include ':http'
 include ':mvp'
 include ':app'

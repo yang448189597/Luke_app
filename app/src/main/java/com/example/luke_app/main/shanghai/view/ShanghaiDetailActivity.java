@@ -11,7 +11,10 @@ import android.widget.ImageView;
 import com.example.luke_app.R;
 import com.example.luke_app.base.BaseActivity;
 import com.example.luke_app.base.ViewInject;
+import com.example.luke_app.main.shanghai.If.IShanghaiDetailContact;
+import com.example.luke_app.main.shanghai.manager.GetXiaoHuaTask;
 import com.example.luke_app.main.shanghai.module.ShangHaiDetailHttpTask;
+import com.example.luke_app.main.shanghai.presenter.ShanghaiDetailPresenter;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -39,7 +42,10 @@ import okhttp3.Response;
  * @Project: Luke_app
  */
 @ViewInject(mainLayoutid = R.layout.activity_shanghai_detail)
-public class ShanghaiDetailActivity extends BaseActivity {
+public class ShanghaiDetailActivity extends BaseActivity implements IShanghaiDetailContact.IView {
+
+    IShanghaiDetailContact.IPresenter mPresenter =  new ShanghaiDetailPresenter(this);
+
     public static String mActivityOptionsCompat = "ShanghaiDetailActivity";
     @BindView(R.id.iv_shanghai_detail)
     ImageView ivShanghaiDetail;
@@ -78,7 +84,17 @@ public class ShanghaiDetailActivity extends BaseActivity {
      * 发送网络请求 OkHttp
      */
     private void initGetNetData() {
-        Object desc = new ShangHaiDetailHttpTask().getXiaoHuaList("desc","1","2");
+
+        mPresenter.getNetData();
+//        GetXiaoHuaTask task = new GetXiaoHuaTask();
+//        task.execute("desc","1","1");
+
+//        Object desc = new ShangHaiDetailHttpTask().getXiaoHuaList("desc","1","2");
+//        if(desc instanceof Response){
+//            Response response = (Response)desc;
+//            Log.e("initGetNetData","onResponse"+response.body().toString());
+//        }
+
 //        OkHttpClient client = new OkHttpClient();
 //        HttpUrl.Builder builder = HttpUrl.parse("http://v.juhe.cn/joke/content/list.php").newBuilder();
 //        builder.addQueryParameter("sort","desc");

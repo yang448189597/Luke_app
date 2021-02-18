@@ -1,5 +1,7 @@
 package com.example.http;
 
+import com.example.http.request.host.IRequest;
+
 import java.util.Map;
 
 /*
@@ -8,7 +10,7 @@ import java.util.Map;
  * @Sign: Cherish life and keep away from bugs!
  * @Project: Luke_app
  */
-public class LfhttpTask {
+public class LfHttpServer {
     protected Object execute(IRequest request, Map<String,Object> params){
         return HttpHelper.execute(request,params);
     }
